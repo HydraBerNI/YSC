@@ -108,7 +108,7 @@ class YSC:
         else:
             self.hasvalid = True
             for filename in glob.glob(str(valid_path)+"/*.png"):
-                self.validation_filename.append(filename[13:])
+                self.validation_filename.append(filename[len(str(valid_path)):])
                 image = Image.open(filename).resize(size=(self.size_x,self.size_x))
                 image_array = np.average(np.asarray(image), axis=2).reshape(self.size_x,self.size_y,1)/self.divide_color
                 self.valid = np.append(self.valid, [image_array], axis=0)
